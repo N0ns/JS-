@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function() {
+				//1、注册验证
+				$('#btn').click(function() {
+					console.log(123);
+					$.ajax({
+						type: 'get',
+						async: true,
+						data: {
+							'm': 'index',
+							'a': 'verifyUserName',
+							'username': 'linchong'
+						},
+						url: 'guestbook/index.php',
+						success: function(str) {
+							console.log(str);
+							var data = JSON.parse(str);
+							console.log(data);
+						}
+					})
+				});
+				
+				
+				//2、注册功能
+				$('#btn2').click(function() {
+					console.log(123);
+					$.ajax({
+						type: 'get',
+						async: true,
+						data: {
+							'm': 'index',
+							'a': 'reg',
+							'username': 'linchong',
+							'password':'123456'
+						},
+						url: 'guestbook/index.php',
+						success: function(str) {
+							console.log(str);
+							var data = JSON.parse(str);
+							console.log(data);
+						}
+					})
+				});
+				
+				
+				//2、登陆功能
+				$('#btn3').click(function() {
+					console.log(123);
+					$.ajax({
+						type: 'get',
+						async: true,
+						data: {
+							'm': 'index',
+							'a': 'login',
+							'username': 'linchong',
+							'password':'123456'
+						},
+						url: 'guestbook/index.php',
+						success: function(str) {
+							console.log(str);
+							var data = JSON.parse(str);
+							console.log(data);
+						}
+					})
+				});
+				
+				//退出功能
+				$('#btn4').click(function() {
+					console.log(123);
+					$.ajax({
+						type: 'get',
+						async: true,
+						data: {
+							'm': 'index',
+							'a': 'logout',
+						},
+						url: 'guestbook/index.php',
+						success: function(str) {
+							console.log(str);
+							var data = JSON.parse(str);
+							console.log(data);
+						}
+					})
+				});
+				
+				
+				//发帖子
+				$('#btn5').click(function() {
+					console.log(123);
+					$.ajax({
+						type: 'post',
+						async: true,
+						data: {
+							'm': 'index',
+							'a': 'send',
+							'content':'rrr'
+						},
+						url: 'guestbook/index.php',
+						success: function(str) {
+							console.log(str);
+							var data = JSON.parse(str);
+							console.log(data);
+						}
+					})
+				});
+				
+				//获取帖子列表
+				$('#btn6').click(function() {
+					console.log(123);
+					$.ajax({
+						type: 'get',
+						async: true,
+						data: {
+							'm': 'index',
+							'a':'getList',
+							'page': '1',
+							'n':'5'
+						},
+						url: 'guestbook/index.php',
+						success: function(str) {
+							console.log(str);
+							var data = JSON.parse(str);
+							console.log(data);
+						}
+					})
+				});
+				
+				
+			});
+		</script>
+	</head>
+
+	<body>
+		<input type="button" name="btn" id="btn" value="注册验证" />
+		<input type="button" name="btn2" id="btn2" value="注册功能" />
+		<input type="button" name="btn3" id="btn3" value="登陆功能" />
+		<input type="button" name="btn4" id="btn4" value="退出功能" />
+		<input type="button" name="btn5" id="btn5" value="发帖" />
+		<input type="button" name="btn6" id="btn6" value="获取帖子列表" />
+	</body>
+
+</html>

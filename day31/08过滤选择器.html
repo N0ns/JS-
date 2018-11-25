@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('ul li:first').html('123');
+				$('ul li:last').html('456');
+				$('ul li:gt(2)').css({
+					'background':'#666',
+					'color':'#000',
+					'width':'200px',
+					'height':'200px'
+				});//不包含自身，大于下标2的行
+				$('ul li:lt(2)').css('background','red');
+				
+				$('ul li:first').attr('class','red');
+//				$('ul li:first').removeAttr('title');
+				
+				$('ul li').click(function(){
+					console.log($(this).index());//同级别下所在位置下标
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li></li>
+			<h2></h2>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+</html>

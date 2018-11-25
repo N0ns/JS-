@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('ul').find('.red').html('122');//查找ul里面类名为red的节点
+				$('ul').find('.red').next().html('345');
+				console.log($('ul').children().length);//子代
+				
+				console.log($('ul').children().size());
+				$('.red').parent().css('color','red');
+			});
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li class="red"></li>
+			<h2></h2>
+			<li></li>
+			<li></li>
+			<li></li>
+		</ul>
+	</body>
+</html>

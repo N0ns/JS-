@@ -1,0 +1,121 @@
+@charset "UTF-8";
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+.box {
+  font-size: 30px;
+}
+
+/* css注释 */
+.public, #nav {
+  width: 980px;
+  margin: 0 auto;
+}
+
+#nav {
+  height: 70px;
+}
+#nav ul {
+  width: 100%;
+  height: 80px;
+}
+#nav ul li {
+  float: left;
+  margin-right: 10px;
+}
+#nav ul li a {
+  display: block;
+  color: #000;
+}
+#nav ul li a:hover {
+  color: red;
+}
+#nav ul li a.active {
+  color: yellow;
+}
+
+p {
+  width: 980px;
+  height: 90px;
+}
+p span {
+  display: block;
+}
+p .active {
+  color: red;
+}
+
+.a1 {
+  color: red;
+}
+
+.a2 {
+  color: red;
+}
+
+.a3 {
+  color: red;
+}
+
+.nav-small {
+  width: 33px;
+  height: 22px;
+  background: url(img/banner1.jpg);
+}
+
+.nav-middle {
+  width: 40px;
+  height: 20px;
+  background: url(img/banner2.jpg);
+}
+
+.nav-big {
+  width: 50px;
+  height: 50px;
+  background: url(img/banner3.jpg);
+}
+
+#foot {
+  -webkit-transition: 0.5s;
+  -moz-transition: 0.5s;
+  -ms-transition: 0.5s;
+  -o-transition: 0.5s;
+  transition: 0.5s;
+}
+
+h3:before, h3:after {
+  content: "";
+  display: table;
+}
+h3:after {
+  clear: both;
+}
+
+.down, .up {
+  _font-size: 0;
+  _line-height: 0;
+  _overflow: hidden;
+  width: 0;
+  height: 0;
+}
+
+.down {
+  border-width: 20px;
+  border-style: solid dashed dashed dashed;
+  border-color: #000 transparent transparent transparent;
+}
+
+.up {
+  border-width: 20px;
+  border-style: dashed dashed solid dashed;
+  border-color: transparent transparent #ccc transparent;
+}
+
+/*# sourceMappingURL=style.css.map */

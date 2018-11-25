@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				margin: 50px;
+			}
+			#box input{
+				width: 80px;
+				height: 40px;
+				
+			}
+			#box input.active{
+				background: red;
+			}
+			.con{
+				width: 400px;
+				height: 250px;
+				border: 1px solid #000;
+				display: none;
+			}
+		</style>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				$('#box input').mouseover(function(){
+					//鼠标经过当前的高亮
+					//排他思想
+					$(this).addClass('active').siblings().removeClass('active');
+					
+					console.log($(this).index());
+					//鼠标经过让对应的div显示
+					var index=$(this).index();
+					$('.con').css('display','none');
+					$('.con').eq(index).css('display','block');
+					
+				});
+			});
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<input class="active" type="button" name="" id="" value="按钮1" />
+			<input type="button" name="" id="" value="按钮2" />
+			<input type="button" name="" id="" value="按钮3" />
+			<input type="button" name="" id="" value="按钮4" />
+			<div class="con" style="display: block;">
+				1
+			</div>
+			<div class="con">
+				2
+			</div>
+			<div class="con">
+				3
+			</div>
+			<div class="con">
+				4
+			</div>
+		</div>
+	</body>
+</html>

@@ -1,0 +1,64 @@
+
+
+后台提供：
+
+1、接口、数据库 php，java
+
+2、API手册
+
+前端怎么做？
+
+1、搭建环境。根据接口是什么类型的，搭建相对应环境。
+
+wamp:lamp环境  
+
+2、导入数据库：里面表结构，可能有数据
+
+3、进行ajax数据交互
+
+用jq的ajax，先要引入jq框架，再使用$.ajax方法
+
+$.ajax({
+		type:"get",
+		url:"guestbook/index.php",
+		async:true,
+		data:{
+			'm':'index',
+			'a':'verifyUserName',
+			'username':'malin'
+		},
+		success:function(str){
+			console.log(str);
+			var data=JSON.parse(str);
+			console.log(data);
+		}
+	});
+
+4、重要的：拿到数据后，进行DOM操作，渲染页面
+
+
+
+实例：留言板功能
+
+
+1、用户名验证
+
+2、注册
+
+3、登陆
+
+4、退出
+
+5、发帖
+
+6、获取帖子列表
+
+7、顶贴、彩贴
+
+
+总贴：20条
+
+设置：n：5条
+
+总共：4页
+

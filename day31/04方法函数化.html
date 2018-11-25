@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				//获取内容
+				var oBtn=document.getElementById('btn');
+				oBtn.innerHTML='sss';
+				
+				$('#btn').html('sss');
+				//绑定事件
+				oBtn.onclick=function(){
+					
+				}
+				
+				$('#btn').click(function(){
+					
+				});
+				
+				//设置样式
+				oBtn.style.display='none';
+				
+				$('#btn').css('display','none');
+				$('#btn').css('display');
+				
+				
+				
+				//链式操作
+				$('#btn').html('你好');
+				$('#btn').css('color','red');
+				$('#btn').click(function(){
+					console.log(123);
+				});
+				
+				$('#btn').html('你好')
+				         .css('color','red')
+				         .click(function(){
+					console.log(123);
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+	</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+//				$('#box li').css('color','red');//后代选择器
+//				$('#box > li').css('color','red');//子代选择器
+//				$('#box li:eq(3)').css('color','red');
+				$('#box li:odd').css('color','red');
+				$('#box li:even').css('color','blue');
+			});
+		</script>
+	</head>
+	<body>
+		<ul id="box">
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+			<li>6</li>
+		</ul>
+	</body>
+</html>

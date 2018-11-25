@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				
+				$('#box li').click(function(){
+//					console.log($(this).html());
+					
+//					this.innerHTML//
+					
+//					$(this).innerHTML//出错  jq对象.js方法
+//					this.html()//出错
+					
+					$(this).get(0).innerHTML='aaa';//将jq对象转成js对象
+					$(this)[0]//将jq对象转成js对象
+					
+					//js对象转成jq对象
+					this//js
+					$(this)//jq
+					
+					$(document)
+					$(window).width();
+
+					
+				});
+				
+			});
+		</script>
+	</head>
+	<body>
+		<ul id="box">
+			<li>多个1</li>
+			<li>多个2</li>
+			<li>多个3</li>
+			<li>多个4</li>
+			<li>多个5</li>
+		</ul>
+	</body>
+</html>

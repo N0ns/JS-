@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<script src="jquery-1.10.1.min.js" type="text/javascript" charset="utf-8"></script>
+		<script type="text/javascript">
+			$(function(){
+				//创建节点
+				$li=$('<li>荔枝</li>');
+				//插入节点  父节点.append(子节点)  插入到后面
+				$('ul').append($li).css('color','red');
+				
+				//创建节点
+				$li2=$('<li>龙眼</li>');
+				//插入节点  父节点.append(子节点) 
+				$li2.appendTo($('ul')).css('color','red');
+				
+//				$('.ap').remove();//删除节点
+				
+//				$('.xg').empty();//清空内容
+				
+				$('.hmg').clone(true).appendTo($('ul'));//复制节点
+				
+//				$('<p>你好</p>').replaceAll('li');//替换
+
+				$('.hmg').wrap('<div></div>');//包裹
+//				$('li').wrapInner('<a href="#"></a>');
+
+				$li3=$('<li>青瓜</li>');
+				$('ul').prepend($li3);//插入到前面
+				
+			});
+		</script>
+	</head>
+	<body>
+		<ul>
+			<li class="ap">苹果</li>
+			<li class="xg">西瓜</li>
+			<li class="pt">葡萄</li>
+			<li class="hmg">哈密瓜</li>
+		</ul>
+		<input type="text" name="" id="" value="" />
+	</body>
+</html>

@@ -1,0 +1,307 @@
+@charset "utf-8";
+@import "public.scss";//引入其他的scss文件
+
+$fontsize:20px;//变量的声明和使用
+
+
+.public{
+    //公共样式引入方法一：继承
+    width: 980px;
+    margin: 0 auto;
+}
+@mixin public2($h:100px){
+    //公共样式引入方法二：混合
+    height: $h;
+}
+#nav{
+    font-size: $fontsize;
+    font-family: "微软雅黑";
+    //嵌套的写法
+    ul{
+        @extend .public;
+        @include public2(60px);
+        li{
+            float: left;
+            @include public2;
+            a{
+                color: red;
+                &:hover{
+                    color: #000;
+                }
+            }
+        }
+    }
+}
+#main{
+    font-size: $fontsize;
+    @extend .public;
+    @include public2(500px);
+}
+
+//判断语句
+$istrue:true;
+@if $istrue{
+    #nav p{ color: #000; }
+}@else{
+    #nav p{ color: red;}
+}
+
+
+//循环
+@for $i from 1 through 3{
+    .a#{$i}{color: red;}
+}
+
+//数组和循环
+$arrdata:(small,33px,22px,1),(middle,40px,20px,2),(big,50px,50px,3);
+
+@each $name,$w,$h,$num in $arrdata{
+    .nav-#{$name}{
+        width: $w;
+        height: $h;
+        background: url(img/banner#{$num}.jpg);
+    }
+}
+//常用的mixin函数
+
+@mixin css3($property, $value) {  
+    //添加css3代码  各种前缀的添加
+    @each $prefix in -webkit-, -moz-, -ms-, -o-, '' {  
+        #{$prefix}#{$property}: $value;  
+    }  
+} 
+
+#foot{
+    //添加css3代码各种前缀的添加
+    @include css3(transition, 0.5s);
+}
+
+@mixin clearfix() {  
+    &:before,  
+    &:after {  
+        content: "";  
+        display: table;  
+    }  
+    &:after {  
+        clear: both;  
+    }  
+}
+
+//-----------------------------------清除浮动-----------------------------------------  
+//引用例子：@include clearfix();  
+@mixin clearfix() {  
+    &:before,  
+    &:after {  
+        content: "";  
+        display: table;  
+    }  
+    &:after {  
+        clear: both;  
+    }  
+}  
+  
+//-----------------------------------Black和White-----------------------------------------  
+//background:black(0.15);  
+//color:white(0.9);}  
+@function black($opacity) {  
+    @return rgba(0, 0, 0, $opacity)  
+}  
+  
+@function white($opacity) {  
+    @return rgba(255, 255, 255, $opacity)  
+}  
+  
+//-----------------------------------内阴影和外阴影-----------------------------------------  
+//引用例子:@include box-emboss(0.8, 0.05);  
+@mixin box-emboss($opacity, $opacity2) {  
+    box-shadow: white($opacity) 0 1px 0, inset black($opacity2) 0 1px 0;  
+}  
+  
+  
+  
+//-----------------------------------行高-----------------------------------------  
+//引用例子:@include line-height (16);  
+@mixin line-height($heightValue: 12) {  
+    line-height: $heightValue + px; //fallback for old browsers  
+    line-height: (0.125 * $heightValue) + rem;  
+}  
+  
+//-----------------------------------隐藏文字-----------------------------------------  
+//引用例子：  
+//.logo{  
+//    background: url("logo.png");  
+//    height:100px;  
+//    width:200px;  
+//    @include hide-text;  
+//}  
+@mixin hide-text {  
+    overflow: hidden;  
+    text-indent: -9000px;  
+    display: block;  
+}  
+  
+
+  
+//-----------------------------------正三角-----------------------------------------  
+//正三角的通用属性  
+%triangleBase {  
+    _font-size: 0;  
+    _line-height: 0;  
+    _overflow: hidden;  
+    width: 0;  
+    height: 0;  
+      
+}  
+  
+//regulaTriangle:正三角(dashed默认透明)  
+//例子：@include regulaTriangle(top,red);  
+@mixin regulaTriangle($derection:bottom, $color: #000, $width: 20px) {  
+    @extend %triangleBase;  
+    border-width: $width;  
+    //向右  
+    @if $derection==right {  
+        border-style: dashed dashed dashed solid;  
+        border-color: transparent transparent transparent $color;  
+    }  
+    //向左  
+    @if $derection==left {  
+        border-style: dashed solid dashed dashed;  
+        border-color: transparent $color transparent transparent;  
+    }  
+    //向上  
+    @if $derection==top {  
+        border-style: dashed dashed solid dashed;  
+        border-color: transparent transparent $color transparent;  
+    }  
+    //向下  
+    @if $derection==bottom {  
+        border-style: solid dashed dashed dashed;  
+        border-color: $color transparent transparent transparent;  
+    }  
+}  
+
+#sanjiao{
+    @include regulaTriangle(top,red); 
+}
+  
+//-----------------------------------直角三角形-----------------------------------------  
+//right-angledTriangle:直角三角形  
+//例子：@include right-angledTriangle(1,red);  
+@mixin right-angledTriangle ($derection:1, $color:#000, $width: 20px, $opacity:transparent, $border:dashed) {  
+    @extend %triangleBase;  
+    border-width: $width;  
+    //向右  
+    @if $derection==1 {  
+        border-style: $border dashed dashed $border;  
+        border-color: $color $opacity $opacity $color;  
+    }  
+    //向右  
+    @if $derection==2 {  
+        border-style: $border $border dashed dashed;  
+        border-color: $color $color $opacity $opacity;  
+    }  
+    //向右  
+    @if $derection==3 {  
+        border-style: dashed $border $border dashed;  
+        border-color: $opacity $color $color $opacity;  
+    }  
+    //向右  
+    @if $derection==4 {  
+        border-style: dashed dashed $border $border;  
+        border-color: $opacity $opacity $color $color;  
+    }  
+}  
+  
+//-----------------------------------圆角-----------------------------------------  
+//radius:圆角  
+//例子：@include radius(24,100%);  
+@mixin radius($num:1234, $size: 5px) {  
+    @if $num==1234 {  
+        -webkit-border-radius: $size; //Saf3+, Chrome  
+        -moz-border-radius: $size; //FF1+  
+        border-radius: $size; //Opera 10.5, IE 9  
+        -ms-border-radius: $size;  
+    }  
+    @if $num==12 {  
+        -webkit-border-top-left-radius: $size;  
+        border-top-left-radius: $size;  
+        -webkit-border-top-right-radius: $size;  
+        border-top-right-radius: $size;  
+        -moz-border-top-left-radius: $size;  
+        -ms-border-top-left-radius: $size;  
+        -moz-border-top-right-radius: $size;  
+        -ms-border-top-right-radius: $size;  
+    }  
+    @if $num==23 {  
+        -webkit-border-top-right-radius: $size;  
+        border-top-right-radius: $size;  
+        -webkit-border-bottom-right-radius: $size;  
+        border-bottom-right-radius: $size;  
+        -moz-border-top-right-radius: $size;  
+        -moz-border-bottom-right-radius: $size;  
+        -ms-border-top-right-radius: $size;  
+        -ms-border-bottom-right-radius: $size;  
+    }  
+    @if $num==34 {  
+        -webkit-border-bottom-right-radius: $size;  
+        border-bottom-right-radius: $size;  
+        -webkit-border-bottom-left-radius: $size;  
+        border-bottom-left-radius: $size;  
+        -moz-border-bottom-left-radius: $size;  
+        -moz-border-bottom-right-radius: $size;  
+        -ms-border-bottom-left-radius: $size;  
+        -ms-border-bottom-right-radius: $size;  
+    }  
+    @if $num==14 {  
+        -webkit-border-top-left-radius: $size;  
+        border-top-left-radius: $size;  
+        -webkit-border-bottom-left-radius: $size;  
+        border-bottom-left-radius: $size;  
+        -moz-border-top-left-radius: $size;  
+        -moz-border-bottom-left-radius: $size;  
+        -ms-border-top-left-radius: $size;  
+        -ms-border-bottom-left-radius: $size;  
+    }  
+    @if $num==13 {  
+        -webkit-border-top-left-radius: $size;  
+        -webkit-border-bottom-right-radius: $size;  
+        -ms-border-top-left-radius: $size;  
+        -ms-border-bottom-right-radius: $size;  
+        border-top-left-radiu: $size;  
+        -moz-border-top-left-radius: $size;  
+        border-bottom-right-radiu: $size;  
+        -moz-border-bottom-right-radius: $size;  
+    }  
+    @if $num==24 {  
+        -webkit-border-top-right-radius: $size;  
+        border-top-right-radius: $size;  
+        -webkit-border-bottom-left-radius: $size;  
+        border-bottom-left-radius: $size;  
+        -moz-border-top-right-radius: $size;  
+        -moz-border-bottom-left-radius: $size;  
+        -ms-border-top-right-radius: $size;  
+        -ms-border-bottom-left-radius: $size;  
+    }  
+}  
+  
+//-----------------------------------边框阴影-----------------------------------------  
+//boxshadow:边框阴影  
+//例子：@include boxshadow(24,100%);  
+@mixin boxshadow($x: 3px, $y: 3px, $shadowcolor: #cccccc) {  
+    -moz-box-shadow: $x $y 4px $shadowcolor; // FF3.5+   
+    -webkit-box-shadow: $x $y 4px $shadowcolor; // Saf3.0+, Chrome   
+    box-shadow: $x $y 4px $shadowcolor; // Opera 10.5, IE 9.0   
+    filter: progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$x}, OffY=#{$y}, Color='#{$shadowcolor}');  
+    /* IE6,IE7 */  
+    -ms-filter: "progid:DXImageTransform.Microsoft.dropshadow(OffX=#{$x}, OffY=#{$y}, Color='#{$shadowcolor}')";  
+    /* IE8 */  
+}  
+
+
+//-----------------------------------透明度-----------------------------------------  
+//引用例子:@include opacity(0.8);  
+@mixin opacity($opacity) {  
+    opacity: $opacity;  
+    $opacity-ie: $opacity * 100;  
+    filter: alpha(opacity=$opacity-ie); //IE8  
+} 

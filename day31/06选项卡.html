@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style type="text/css">
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			#box{
+				margin: 50px;
+			}
+			#box input{
+				width: 80px;
+				height: 40px;
+				
+			}
+			#box input.active{
+				background: red;
+			}
+			.con{
+				width: 400px;
+				height: 250px;
+				border: 1px solid #000;
+				display: none;
+			}
+		</style>
+		<script type="text/javascript">
+			function getByClass(oParent,classname){
+				//通过类名查找元素们的方法
+				var aResults=[];
+				var aEles=oParent.getElementsByTagName('*');
+				for(var i=0;i<aEles.length;i++){
+					if(aEles[i].className==classname){
+						aResults.push(aEles[i]);
+					}
+				}
+				
+				return aResults;
+				
+			}
+			window.onload=function(){
+				var oBox=document.getElementById('box');
+				var aInput=oBox.getElementsByTagName('input');
+				var aDiv=getByClass(oBox,'con');
+				
+				
+				for(var i=0;i<aInput.length;i++){
+					aInput[i].index=i;
+					aInput[i].onmouseover=function(){
+						for(var i=0;i<aInput.length;i++){
+							aInput[i].className='';
+							aDiv[i].style.display='none';
+						}
+						this.className='active';
+						aDiv[this.index].style.display='block';
+					}
+				}
+			}
+		</script>
+	</head>
+	<body>
+		<div id="box">
+			<input class="active" type="button" name="" id="" value="按钮1" />
+			<input type="button" name="" id="" value="按钮2" />
+			<input type="button" name="" id="" value="按钮3" />
+			<input type="button" name="" id="" value="按钮4" />
+			<div class="con" style="display: block;">
+				1
+			</div>
+			<div class="con">
+				2
+			</div>
+			<div class="con">
+				3
+			</div>
+			<div class="con">
+				4
+			</div>
+		</div>
+	</body>
+</html>
